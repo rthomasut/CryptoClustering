@@ -56,8 +56,6 @@ In the CryptoClustering challenge, we used Python and unsupervised learning tech
 - Applied the elbow method to the PCA data to find the best value for k.
 - Plotted an elbow curve to visualize the optimal k.
 
-![PCA Elbow Curve](/images/pca_elbow_curve.png)
-
 ## Cluster Cryptocurrencies with K-means Using the PCA Data
 
 - Initialized the K-means model with the best value for k.
