@@ -1,85 +1,85 @@
 # CryptoClustering Challenge
 
-In this challenge, you'll use Python and unsupervised learning to predict if cryptocurrencies are affected by 24-hour or 7-day price changes. This README will guide you through the process.
+## Introduction
+
+In the CryptoClustering challenge, we used Python and unsupervised learning techniques to predict how cryptocurrencies are affected by 24-hour and 7-day price changes. This README provides an overview of the steps involved in the challenge and the results obtained.
+
+## Table of Contents
+
+- [Before You Begin](#before-you-begin)
+- [Prepare the Data](#prepare-the-data)
+- [Find the Best Value for k Using the Original Scaled DataFrame](#find-the-best-value-for-k-using-the-original-scaled-data)
+- [Cluster Cryptocurrencies with K-means Using the Original Scaled Data](#cluster-cryptocurrencies-with-k-means-using-the-original-scaled-data)
+- [Optimize Clusters with Principal Component Analysis](#optimize-clusters-with-principal-component-analysis)
+- [Find the Best Value for k Using the PCA Data](#find-the-best-value-for-k-using-the-pca-data)
+- [Cluster Cryptocurrencies with K-means Using the PCA Data](#cluster-cryptocurrencies-with-k-means-using-the-pca-data)
+- [Visualize and Compare the Results](#visualize-and-compare-the-results)
 
 ## Before You Begin
 
-1. Create a new repository for this project called CryptoClustering.
-2. Clone the new repository to your computer.
-3. Push your changes to GitHub.
+- Created a new repository called CryptoClustering.
+- Cloned the repository to the local computer.
+- Pushed changes to GitHub.
 
-## Instructions
+## Prepare the Data
 
-1. Rename the `Crypto_Clustering_starter_code.ipynb` file as `Crypto_Clustering.ipynb`.
-2. Load the `crypto_market_data.csv` into a DataFrame.
-3. Get the summary statistics and plot the data to see what the data looks like before proceeding.
+- Loaded the `crypto_market_data.csv` into a DataFrame.
+- Normalized the data using the `StandardScaler()` module from scikit-learn.
+- Created a DataFrame with the scaled data, setting "coin_id" as the index.
 
-### Prepare the Data
+![Initial Data View](/images/initialdataview.png)
 
-1. Use the `StandardScaler()` module from scikit-learn to normalize the data from the CSV file.
-2. Create a DataFrame with the scaled data and set the "coin_id" index from the original DataFrame as the index for the new DataFrame.
+## Find the Best Value for k Using the Original Scaled DataFrame
 
-### Find the Best Value for k Using the Original Scaled DataFrame
+- Used the elbow method to find the best value for k.
+- Created a list of k values from 1 to 11.
+- Computed inertia for each k and plotted an elbow curve to identify the optimal k.
 
-1. Use the elbow method to find the best value for k.
-2. Create a list with the number of k values from 1 to 11.
-3. Create an empty list to store the inertia values.
-4. Create a for loop to compute the inertia with each possible value of k.
-5. Create a dictionary with the data to plot the elbow curve.
-6. Plot a line chart with all the inertia values computed with different values of k to visually identify the optimal value for k.
+![Elbow Curve](/images/elbow_curve.png)
 
-### Cluster Cryptocurrencies with K-means Using the Original Scaled Data
+## Cluster Cryptocurrencies with K-means Using the Original Scaled Data
 
-1. Initialize the K-means model with the best value for k.
-2. Fit the K-means model using the original scaled DataFrame.
-3. Predict the clusters to group the cryptocurrencies using the original scaled DataFrame.
-4. Create a copy of the original data and add a new column with the predicted clusters.
-5. Create a scatter plot using hvPlot with the x-axis as "PC1" and the y-axis as "PC2". Color the graph points with the labels found using K-means. Add the "coin_id" column in the hover_cols parameter to identify the cryptocurrency represented by each data point.
+- Initialized the K-means model with the best value for k.
+- Fitted the K-means model using the original scaled DataFrame.
+- Predicted clusters and added a new column with predicted cluster labels.
+- Created a scatter plot to visualize the clusters.
 
-### Optimize Clusters with Principal Component Analysis
+![Original Data Clusters](/images/original_data_clusters.png)
 
-1. Using the original scaled DataFrame, perform a PCA and reduce the features to three principal components.
-2. Retrieve the explained variance to determine how much information can be attributed to each principal component.
+## Optimize Clusters with Principal Component Analysis
 
-### Find the Best Value for k Using the PCA Data
+- Performed PCA on the original scaled DataFrame to reduce features to three principal components.
+- Determined the explained variance for each principal component.
 
-1. Use the elbow method on the PCA data to find the best value for k.
-2. Create a list with the number of k-values from 1 to 11.
-3. Create an empty list to store the inertia values.
-4. Create a for loop to compute the inertia with each possible value of k.
-5. Create a dictionary with the data to plot the elbow curve.
-6. Plot a line chart with all the inertia values computed with different values of k to visually identify the optimal value for k.
+## Find the Best Value for k Using the PCA Data
 
-### Cluster Cryptocurrencies with K-means Using the PCA Data
+- Applied the elbow method to the PCA data to find the best value for k.
+- Plotted an elbow curve to visualize the optimal k.
 
-1. Initialize the K-means model with the best value for k.
-2. Fit the K-means model using the PCA data.
-3. Predict the clusters to group the cryptocurrencies using the PCA data.
-4. Create a copy of the DataFrame with the PCA data and add a new column to store the predicted clusters.
-5. Create a scatter plot using hvPlot with the x-axis as "price_change_percentage_24h" and the y-axis as "price_change_percentage_7d". Color the graph points with the labels found using K-means. Add the "coin_id" column in the hover_cols parameter to identify the cryptocurrency that each data point represents.
+![PCA Elbow Curve](/images/pca_elbow_curve.png)
 
-### Visualize and Compare the Results
+## Cluster Cryptocurrencies with K-means Using the PCA Data
 
-1. Create a composite plot using hvPlot to compare the elbow curve created from the original data with the one created from the PCA data.
-2. Create a composite plot to compare the cryptocurrency clusters that resulted from using the original data with those that resulted from the PCA data.
+- Initialized the K-means model with the best value for k.
+- Fitted the K-means model using the PCA data.
+- Predicted clusters and added a new column with predicted cluster labels.
+- Created a scatter plot to visualize the clusters using PCA data.
 
-### Coding Conventions and Formatting
+![PCA Data Clusters](/images/pca_data_clusters.png)
 
-- Place imports at the top of the file.
-- Name functions and variables with lowercase characters and underscores.
-- Follow DRY (Don't Repeat Yourself) principles.
-- Use concise logic and creative engineering where possible.
+## Visualize and Compare the Results
 
-### Deployment and Submission
+- Created composite plots to compare the elbow curves and cluster results obtained from the original data and PCA data.
 
-- Submit a link to a GitHub repository that's cloned to your local machine.
-- Use the command line to add your files to the repository.
-- Include appropriate commit messages in your files.
+![Original vs. PCA Elbow Curves](/images/original_vs_pca_elbow.png)
+![Original vs. PCA Clusters](/images/original_vs_pca_clusters.png)
 
-### Code Comments
+## Conclusion
 
-- Be well commented with concise, relevant notes that other developers can understand.
+The CryptoClustering challenge involved preprocessing data, determining optimal cluster numbers, and using K-means clustering to group cryptocurrencies. The results were compared between original and PCA data, providing insights into the impact of feature reduction on clustering.
 
----
+Feel free to explore the code in the [Crypto_Clustering.ipynb](Crypto_Clustering.ipynb) Jupyter Notebook for detailed implementation.
 
-Follow these instructions to complete the CryptoClustering challenge and meet the requirements for each section. Good luck!
+For images and more details, refer to the `images` directory in this repository.
+
+Tags: #clustering #k-means #PCA #cryptocurrencies #data-analysis #machine-learning
